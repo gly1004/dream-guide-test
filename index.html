@@ -1049,10 +1049,10 @@
                     // 클래스 초기화
                     bar.classList.remove('low', 'moderate');
 
-                    if (score <= 1) {
-                        bar.classList.add('low');        // 0-1점: 빨간색
-                    } else if (score <= 3) {
-                        bar.classList.add('moderate');   // 2-3점: 노란-녹색
+                    if (score <= 2) {
+                        bar.classList.add('low');        // 0-2점: 빨간-주황
+                    } else if (score === 3) {
+                        bar.classList.add('moderate');   // 3점: 노란-녹색
                     }
                     // 4-5점: 기본 청록색
                 });
