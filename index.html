@@ -365,6 +365,10 @@
             background: linear-gradient(90deg, #ff6b6b, #ffaa64);
         }
 
+        .category-fill.moderate {
+            background: linear-gradient(90deg, #ffc864, #4aeadc);
+        }
+
         .restart-btn {
             padding: 15px 40px;
             font-size: 1.1rem;
@@ -391,31 +395,125 @@
         }
 
         @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            header {
+                padding: 25px 15px;
+                margin-bottom: 20px;
+            }
+
             header h1 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.95rem;
+            }
+
+            .question-card {
+                padding: 20px 15px;
             }
 
             .question-text {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
+                line-height: 1.6;
             }
 
             .options {
                 flex-direction: column;
+                gap: 12px;
             }
 
             .option-btn {
                 width: 100%;
+                padding: 14px 30px;
+            }
+
+            .result-card {
+                padding: 25px 15px;
             }
 
             .result-score {
                 font-size: 3.5rem;
             }
 
+            .result-title {
+                font-size: 1.4rem;
+            }
+
+            .result-details {
+                padding: 15px;
+            }
+
+            .result-details h3 {
+                font-size: 1rem;
+            }
+
+            .category-item {
+                padding: 12px 0;
+            }
+
             .category-header {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
+            }
+
+            .category-name {
+                font-size: 0.95rem;
             }
 
             .category-desc {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+
+            .improvement-box {
+                padding: 15px;
+            }
+
+            .improvement-box h3 {
+                font-size: 1rem;
+            }
+
+            .improvement-section {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .improvement-section h4 {
+                font-size: 0.95rem;
+            }
+
+            .improvement-section p {
+                font-size: 0.85rem;
+            }
+
+            .level-badge {
+                font-size: 0.7rem !important;
+                padding: 2px 8px !important;
+            }
+
+            .tip-box {
+                padding: 10px 12px;
+            }
+
+            .tip-box ul {
+                margin-left: 15px !important;
+                font-size: 0.85rem;
+            }
+
+            .restart-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 20px;
                 font-size: 0.8rem;
             }
         }
@@ -944,14 +1042,19 @@
                 const categories = ['observe', 'connect', 'support', 'identity'];
                 categories.forEach(cat => {
                     const bar = document.getElementById(cat + 'Bar');
-                    const percentage = (categoryScores[cat] / maxByCategory[cat]) * 100;
+                    const score = categoryScores[cat];
+                    const percentage = (score / maxByCategory[cat]) * 100;
                     bar.style.width = percentage + '%';
 
-                    if (percentage < 40) {
-                        bar.classList.add('low');
-                    } else {
-                        bar.classList.remove('low');
+                    // 클래스 초기화
+                    bar.classList.remove('low', 'moderate');
+
+                    if (score <= 1) {
+                        bar.classList.add('low');        // 0-1점: 빨간색
+                    } else if (score <= 3) {
+                        bar.classList.add('moderate');   // 2-3점: 노란-녹색
                     }
+                    // 4-5점: 기본 청록색
                 });
 
                 document.getElementById('observeScore').textContent = categoryScores.observe + '/5';
