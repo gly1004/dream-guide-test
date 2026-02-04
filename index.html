@@ -366,7 +366,7 @@
         }
 
         .category-fill.moderate {
-            background: linear-gradient(90deg, #ffc864, #4aeadc);
+            background: linear-gradient(90deg, #ffaa64, #ffd700);
         }
 
         .restart-btn {
@@ -1049,10 +1049,10 @@
                     // 클래스 초기화
                     bar.classList.remove('low', 'moderate');
 
-                    if (score <= 2) {
-                        bar.classList.add('low');        // 0-2점: 빨간-주황
-                    } else if (score === 3) {
-                        bar.classList.add('moderate');   // 3점: 노란-녹색
+                    if (score <= 1) {
+                        bar.classList.add('low');        // 0-1점: 빨강-주황
+                    } else if (score <= 3) {
+                        bar.classList.add('moderate');   // 2-3점: 주황-노랑
                     }
                     // 4-5점: 기본 청록색
                 });
